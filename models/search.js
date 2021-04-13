@@ -11,7 +11,7 @@ class Search {
 
     get paramsMapbox(){
         return {
-            'access_token':'pk.eyJ1Ijoic2FudGlhZ29wZWdlbHMiLCJhIjoiY2tuZ2E0ZjA5MGVmYzJ3cDU5OGVsajlqYiJ9.goHuwsixWgyeXK1sZKyVQQ',
+            'access_token':process.env.MAPBOX_KEY,
             'limit':5,
             'language':'es'
         }
@@ -25,9 +25,16 @@ class Search {
             })
 
             const resp = await axiosInstance.get()
-            console.log(resp.data)
+        
+            return resp.data.features.map( place => ({
+                id: place.id,
+                name: place.place_name,
+                lng: place.center[0],
+                lat: place.center[1]
+            }))
+
         } catch (error) {
-            return 'algo salio mal'
+            return 'Error Response'
         }
     }
 }
