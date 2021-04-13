@@ -1,0 +1,25 @@
+{
+  "name": "node-weather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santiagopegels/node-weather.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santiagopegels/node-weather/issues"
+  },
+  "homepage": "https://github.com/santiagopegels/node-weather#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "colors": "^1.4.0",
+    "inquirer": "^8.0.0"
+  }
+}
