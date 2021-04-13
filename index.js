@@ -13,7 +13,7 @@ const main = async () => {
         switch (opt) {
             case 1:
                 const place = await readInput('Ciudad: ')
-                search.searchByCity(place)
+                await search.searchByCity(place)
                 break;
             case 2:
                 break;
