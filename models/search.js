@@ -28,6 +28,14 @@ class Search {
         }
     }
 
+    get historicCapitalize(){
+        return this.historic.map( place => {
+            let words = place.split(' ')
+            words = words.map( p => p[0].toUpperCase() + p.substring(1))
+            return words.join(' ')
+        })
+    }
+
     async searchByCity(place = '') {
         try {
             const axiosInstance = axios.create({
@@ -64,7 +72,6 @@ class Search {
             const resp = await axiosInstance.get().catch(error => console.log(error))
 
             const { weather, main } = resp.data
-            console.log(resp)
             return {
                 description: weather[0].description,
                 min: main.temp_min,
@@ -81,6 +88,7 @@ class Search {
         if (this.historic.includes(place.toLocaleLowerCase())) {
             return;
         }
+        this.historic = this.historic.splice(0,5)
         this.historic.unshift(place.toLocaleLowerCase())
 
         this.saveDB()

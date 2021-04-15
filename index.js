@@ -33,7 +33,7 @@ const main = async () => {
 
                 break;
             case 2:
-                search.historic.forEach( (place, index) => {
+                search.historicCapitalize.forEach( (place, index) => {
                     index = `${index + 1}`.green
 
                     console.log(`${index} ${place}`)
