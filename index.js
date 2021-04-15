@@ -7,7 +7,7 @@ const main = async () => {
 
     let opt
     const search = new Search()
-
+    search.readDB()
     do {
 
         opt = await inquirerMenu()
@@ -17,7 +17,9 @@ const main = async () => {
                 const term = await readInput('Ciudad: ')
                 const places = await search.searchByCity(term)
                 const idSelected = await showPlacesList(places)
+                if (idSelected === '0' ) continue;
                 const placeSelected = places.find(place => place.id === idSelected)
+                search.addHistoric( placeSelected.name)
                 const weather = await search.weatherPlace(placeSelected.lat, placeSelected.lng)
 
                 console.log('\nInformación de la ciudad\n'.green)
@@ -31,6 +33,11 @@ const main = async () => {
 
                 break;
             case 2:
+                search.historic.forEach( (place, index) => {
+                    index = `${index + 1}`.green
+
+                    console.log(`${index} ${place}`)
+                })
                 break;
         }
 
